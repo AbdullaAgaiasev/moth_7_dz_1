@@ -2,6 +2,7 @@ package com.example.moth_7_dz_1.data.repositories
 
 import com.example.moth_7_dz_1.data.local.NoteDao
 import com.example.moth_7_dz_1.data.mappers.toEntity
+import com.example.moth_7_dz_1.data.mappers.toNote
 import com.example.moth_7_dz_1.data.model.NoteEntity
 import com.example.moth_7_dz_1.domain.model.Note
 import com.example.moth_7_dz_1.domain.repositories.NoteRepository
@@ -30,21 +31,33 @@ class NoteRepositoryImpl @Inject constructor(
         }.flowOn(Dispatchers.IO)
     }
 
-    override fun getAllNotes(): Flow<Resource<List<Note>>> = flow {
+    override fun getAllNotes(): Flow<Resource<List<Note>>> {
+    return  flow {
         emit(Resource.Loading())
         try {
-            val notes = noteDao.getAllNotes()
-            val mappedNotes = notes.map { noteEntity ->
-                Note(
-                    id = noteEntity.id,
-                    title = noteEntity.title,
-                    desc = noteEntity.desc
-                )
-            }
-            emit(Resource.Success(mappedNotes))
+            val data = noteDao.getAllNotes().map { it.toNote() }
+            emit(Resource.Success(data))
         } catch (e: Exception) {
-            emit(Resource.Error(e.localizedMessage?: "unknown error"))
+            emit(
+                Resource.Error(e.localizedMessage?: "unknown error")
+            )
         }
+    }.flowOn(Dispatchers.IO)
+//    = flow {
+//        emit(Resource.Loading())
+//        try {
+//            val notes = noteDao.getAllNotes()
+//            val mappedNotes = notes.map { noteEntity ->
+//                Note(
+//                    id = noteEntity.id,
+//                    title = noteEntity.title,
+//                    desc = noteEntity.desc
+//                )
+//            }
+//            emit(Resource.Success(mappedNotes))
+//        } catch (e: Exception) {
+//            emit(Resource.Error(e.localizedMessage?: "unknown error"))
+//        }
     }
 
     override fun editNote(note: Note): Flow<Resource<Unit>> {
