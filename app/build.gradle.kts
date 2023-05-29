@@ -39,6 +39,9 @@ android {
 
 dependencies {
 
+    implementation(project(":domain"))
+    implementation(project(":data"))
+
     //Ui
     implementation (Deps.Ui.core)
     implementation (Deps.Ui.appcompat)
@@ -49,13 +52,9 @@ dependencies {
     androidTestImplementation (Deps.Ui.espresso)
 
     // Room
-    implementation (Deps.Room.runtime)
-    kapt (Deps.Room.compiler)
-    implementation (Deps.Room.ktx)
-
-    // Coroutines
-    implementation (Deps.Coroutines.android)
-    implementation (Deps.Coroutines.core)
+    implementation(Deps.Room.runtime)
+    kapt(Deps.Room.compiler)
+    implementation(Deps.Room.room)
 
     // Hilt
     implementation (Deps.DaggerHilt.android)

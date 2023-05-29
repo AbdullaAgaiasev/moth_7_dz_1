@@ -36,14 +36,14 @@ abstract class CreateEditFragment : BaseFragment() {
     override fun initClickers() {
         binding.createEditBtn.setOnClickListener {
             if (arguments?.getInt("id") != null) {
-                var note = arguments?.getSerializable("note") as Note
+                var note = arguments?.getSerializable("note") as com.example.moth_7_dz_1.domain.model.Note
                 note.title = binding.titleEt.text.toString()
                 note.desc = binding.descEt.text.toString()
                 editNote(note = note)
                 findNavController().navigateUp()
             } else {
                 createNote(
-                    Note(
+                    com.example.moth_7_dz_1.domain.model.Note(
                         title = binding.titleEt.text.toString(),
                         desc = binding.descEt.text.toString()
                     )
@@ -53,7 +53,7 @@ abstract class CreateEditFragment : BaseFragment() {
     }
 
 
-    private fun createNote(note: Note) {
+    private fun createNote(note: com.example.moth_7_dz_1.domain.model.Note) {
         viewModel.createNote(note)
         viewModel.createNoteState.collectState(state = { state ->
             binding.progressBar.isVisible = state is UIState.Loading
@@ -62,7 +62,7 @@ abstract class CreateEditFragment : BaseFragment() {
         })
     }
 
-    private fun editNote(note: Note) {
+    private fun editNote(note: com.example.moth_7_dz_1.domain.model.Note) {
         viewModel.editNote(note)
         viewModel.editNoteState.collectState(state = { state ->
             // binding.progressBar.isVisible = state is UIState.Loading

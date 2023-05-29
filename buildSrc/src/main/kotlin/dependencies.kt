@@ -2,7 +2,7 @@ object Versions {
     const val AGP = "7.4.0"
     const val kotlin = "1.8.10"
     const val hilt = "2.44.2"
-    const val room = "2.5.1"
+    const val room = "2.5.0"
     const val material = "1.5.0"
     const val appCompat = "1.6.1"
     const val espresso = "3.5.1"
@@ -21,7 +21,7 @@ object Deps {
     object Room {
         const val runtime = "androidx.room:room-runtime:${Versions.room}"
         const val compiler = "androidx.room:room-compiler:${Versions.room}"
-        const val ktx = "androidx.room:room-ktx:${Versions.room}"
+        const val room = "androidx.room:room-ktx:${Versions.room}"
     }
 
     object DaggerHilt {
@@ -55,6 +55,10 @@ object Deps {
         const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
         const val runtime = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}"
     }
+
+    object Javax {
+        const val inject = "javax.inject:javax.inject:1"
+    }
 }
 
 object Plugins {
@@ -66,9 +70,14 @@ object Plugins {
     object Kotlin {
         const val android = "org.jetbrains.kotlin.android"
         const val kapt = "kotlin-kapt"
+        const val jvm = "org.jetbrains.kotlin.jvm"
     }
 
     object DaggerHilt {
         const val hilt = "com.google.dagger.hilt.android"
+    }
+
+    object Java {
+        const val library = "java-library"
     }
 }

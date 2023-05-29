@@ -6,9 +6,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.moth_7_dz_1.domain.model.Note
 import om.example.moth_7_dz_1.databinding.NoteItemBinding
 
-    class ListOfNoteAdapter(private val removeClick: (Note, Int) -> Unit, private val editClick:(Note, Int)->Unit)  : RecyclerView.Adapter<ListOfNoteAdapter.ListOfNoteHolder>() {
-        private var data = arrayListOf<Note>()
-        fun addNotes(list: List<Note>) {
+    class ListOfNoteAdapter(private val removeClick: (com.example.moth_7_dz_1.domain.model.Note, Int) -> Unit, private val editClick:(com.example.moth_7_dz_1.domain.model.Note, Int)->Unit)  : RecyclerView.Adapter<ListOfNoteAdapter.ListOfNoteHolder>() {
+        private var data = arrayListOf<com.example.moth_7_dz_1.domain.model.Note>()
+        fun addNotes(list: List<com.example.moth_7_dz_1.domain.model.Note>) {
             data.clear()
             data.addAll(list)
             notifyDataSetChanged()
@@ -35,7 +35,7 @@ import om.example.moth_7_dz_1.databinding.NoteItemBinding
 
         inner class ListOfNoteHolder(private val binding: NoteItemBinding) :
             RecyclerView.ViewHolder(binding.root) {
-            fun bind(note: Note) {
+            fun bind(note: com.example.moth_7_dz_1.domain.model.Note) {
                 binding.tvTitle.text = note.title
                 binding.tvDesc.text = note.desc
                 itemView.setOnLongClickListener {

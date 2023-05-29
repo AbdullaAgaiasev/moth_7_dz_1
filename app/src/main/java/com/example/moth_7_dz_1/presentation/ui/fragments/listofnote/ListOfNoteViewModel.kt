@@ -12,11 +12,11 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ListOfNoteViewModel @Inject constructor(
-    private val getAllNotesUseCase: GetAllNotesUseCase,
-    private val removeNoteUseCase: RemoveNoteUseCase
+    private val getAllNotesUseCase: com.example.moth_7_dz_1.domain.usecase.GetAllNotesUseCase,
+    private val removeNoteUseCase: com.example.moth_7_dz_1.domain.usecase.RemoveNoteUseCase
 ) : BaseViewModel() {
 
-    private val _getAllNoteState = MutableStateFlow<UIState<List<Note>>>(UIState.Empty())
+    private val _getAllNoteState = MutableStateFlow<UIState<List<com.example.moth_7_dz_1.domain.model.Note>>>(UIState.Empty())
     val getAllNoteState = _getAllNoteState.asStateFlow()
 
     private val _removeNoteState = MutableStateFlow<UIState<Unit>>(UIState.Empty())
@@ -26,7 +26,7 @@ class ListOfNoteViewModel @Inject constructor(
         getAllNotesUseCase.getAllNotes().collectData(_getAllNoteState)
     }
 
-    fun removeNote(note:Note) {
+    fun removeNote(note: com.example.moth_7_dz_1.domain.model.Note) {
         removeNoteUseCase.removeNote(note).collectData(_removeNoteState)
     }
 }

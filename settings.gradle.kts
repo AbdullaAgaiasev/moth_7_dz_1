@@ -14,3 +14,5 @@ dependencyResolutionManagement {
 }
 rootProject.name = "moth_7_dz_1"
 include(":app")
+include(":data")
+include(":domain")
